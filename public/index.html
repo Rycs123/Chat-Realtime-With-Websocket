@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Reddit+Mono:wght@200..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <ul id="rooms">
+        <li id="-room">
+            <ul class="messages" id="-messages"></ul>
+        </li>
+    </ul>
+    <form class="form" id="message-form" action="">
+        <input class="input" id="message-input" autocomplete="off" /><button>Send</button>
+    </form>
+    <form class="form" id="room-form" action="">
+        <input class="input" id="room-input" autocomplete="off" /><button>Join Room</button>
+    </form>
+
+    <div id="name-modal" class="modal">
+        <!-- Modal content -->
+        <form class="modal-content" id="name-form">
+            <h1>Enter Name</h1>
+            <input id="name-input" autocomplete="off">
+        </form>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+</body>
+
+</html>
