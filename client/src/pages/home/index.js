@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Home = ({ username, setUsername, room, setRoom, socket }) => {
   const navigate = useNavigate();
   const [newRoomName, setNewRoomName] = useState(""); // State untuk nama room baru
+  const [roomPassword, setRoomPassword] = useState("");
   const [existingRooms, setExistingRooms] = useState([]); // State untuk daftar room yang sudah ada
 
   useEffect(() => {
@@ -70,6 +71,13 @@ const Home = ({ username, setUsername, room, setRoom, socket }) => {
           placeholder='New Room...'
           value={newRoomName}
           onChange={(e) => setNewRoomName(e.target.value)}
+        />
+
+        <input
+          className={styles.input}
+          placeholder='New Room Password...'
+          value={roomPassword}
+          onChange={(e) => setRoomPassword(e.target.value)}
         />
 
         <button

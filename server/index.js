@@ -4,9 +4,11 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
+const harperCreateRoom = require("./services/harper-create-room");
 const harperSaveMessage = require("./services/harper-save-message");
 const harperGetMessages = require("./services/harper-get-messages");
 const leaveRoom = require("./utils/leave-room"); // Add this
+const { create } = require("domain");
 
 app.use(cors()); // Add cors middleware
 
@@ -69,8 +71,9 @@ io.on("connection", (socket) => {
   });
 
   // Listen for creating new rooms
-  socket.on("create_room", (roomName) => {
-    if (!existingRooms.includes(roomName)) {
+  socket.on("create_room", (roomName, password) => {
+    const createRoomPromise = harperCreateRoom(roomName, password);
+    if (!existingRooms.includes(roomName) && createRoomPromise) {
       existingRooms.push(roomName);
       console.log(`New room created: ${roomName}`);
       // Emit updated existing rooms to all connected clients
